@@ -29,6 +29,17 @@ class GsonTransFormTest {
         val userBean1 = Gson().fromJson(user1, User::class.java).toString()
         println("userBean:${userBean}")
         println("userBean1:${userBean1}")
+        val i = 10
+        if (i == 1) {
+            println(">10")
+        } else if (i == 2) {
+            println(">5")
+        }
+        if (i == 10) {
+            println("==10")
+        } else if (i == 4) {
+            println("==5")
+        }
     }
 
 
