@@ -2,6 +2,9 @@ package com.example.kttest
 
 import org.junit.Test
 
+/**
+ * kotlin == 和===的区别
+ */
 class EqualSignTest {
     @Test
     fun test(){
