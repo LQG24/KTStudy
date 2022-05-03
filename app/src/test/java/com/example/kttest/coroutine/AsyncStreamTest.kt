@@ -9,6 +9,8 @@ import kotlin.math.log
 
 /**
  * 异步流
+ *
+ * Kotlin 流（Flow）异步返回多个计算好的值
  */
 class AsyncStreamTest {
     @Test
@@ -38,6 +40,12 @@ class AsyncStreamTest {
         println("testMethod6:${sum}")
     }
 
+    /**
+     * 限长操作符：
+     * 限长过渡操作符（例如 take）在流触及相应限制的时候会将它的执行取消。
+     * 协程中的取消操作总是通过抛出异常来执行，
+     * 这样所有的资源管理函数（如 try {...} finally {...} 块）会在取消的情况下正常运行：
+     */
     private fun testMethod5() = runBlocking {
         numbers()
             .take(2) // 只获取前两个
@@ -84,6 +92,16 @@ class AsyncStreamTest {
      *流使用 emit 函数 发射 值。
      *流使用 collect 函数 收集 值。
      */
+
+
+    /**
+     * 可以使用操作符转换流，就像使用集合与序列一样。
+     * 过渡操作符应用于上游流，并返回下游流。 这些操作符也是冷操作符，就像流一样。
+     * 这类操作符本身不是挂起函数。它运行的速度很快，返回新的转换流的定义。
+     *
+     * 基础的操作符拥有相似的名字，比如 map 与 filter。
+     * 流与序列的主要区别在于这些操作符中的代码可以调用挂起函数。
+     */
     private fun testMethod3() = runBlocking {
         (1..3).asFlow() // 一个请求流
             .map { request -> performRequest(request) }
@@ -119,7 +137,7 @@ class AsyncStreamTest {
 
     private fun testMethod7() = runBlocking{
         (1..5).asFlow().filter {
-            println("Filter ${it}")
+            println("Filter $it")
             it % 2 == 0
         }.map {
             println("Map $it")

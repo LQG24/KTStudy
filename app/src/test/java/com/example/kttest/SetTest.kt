@@ -7,11 +7,11 @@ import org.junit.Test
  */
 class SetTest {
     @Test
-    fun test(){
+    fun test() {
         val numbers = setOf("one", "two", "three")
-
-        println(numbers union setOf("four", "five"))
         //要将两个集合合并为一个（并集），可使用 union() 函数。
+        println(numbers union setOf("four", "five"))
+
         println(setOf("four", "five") union numbers)
         //要查找两个集合中都存在的元素（交集），请使用 intersect()
         println(numbers intersect setOf("two", "one"))

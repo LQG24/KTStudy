@@ -9,6 +9,8 @@ import kotlin.system.measureTimeMillis
 
 /**
  * 组合挂起函数
+ *
+ * 函数内部发生了错误，并且它抛出了一个异常， 所有在作用域中启动的协程都会被取消。
  */
 class CombinationHangUpTest {
     @Test
@@ -35,6 +37,12 @@ class CombinationHangUpTest {
 
     private fun testMethod2() = runBlocking{
         val time = measureTimeMillis {
+            //async 就类似于 launch。
+            // 它启动了一个单独的协程，这是一个轻量级的线程并与其它所有的协程一起并发的工作。
+            //不同之处在于 launch 返回一个 Job 并且不附带任何结果值，
+            // 而 async 返回一个 Deferred —— 一个轻量级的非阻塞 future，
+            // 这代表了一个将会在稍后提供结果的 promise。你可以使用 .
+            // await() 在一个延期的值上得到它的最终结果， 但是 Deferred 也是一个 Job，所以如果需要的话，你可以取消它。
             val one = async { doSomethingUsefulOne() }
             val two = async { doSomethingUsefulTwo() }
             println("The answer is ${one.await() + two.await()}")

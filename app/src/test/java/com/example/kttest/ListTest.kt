@@ -19,6 +19,7 @@ class ListTest {
         println(numbers1.subList(3,6))
 
         val mutableNumber = mutableListOf(1,2,3,4)
+        //简单地将所有集合元素的值替换为指定值
         mutableNumber.fill(3)
         println("fill:$mutableNumber")
     }

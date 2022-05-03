@@ -3,6 +3,11 @@ package com.example.kttest.coroutine
 import kotlinx.coroutines.*
 import org.junit.Test
 
+/**
+ *取消与超时
+ * join 等待结束；
+ * cancelAndJoin 它合并了对cancel以及join的调用 取消和等待结束；
+ */
 class CancelAndTimeoutTest {
     @Test
     fun test() = runBlocking {
